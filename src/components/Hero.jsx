@@ -29,7 +29,7 @@ const Hero = () => {
         {/* Overlay texte */}
         <div className="absolute inset-0 flex flex-col justify-center items-center px-4 text-white text-center">
           <h1 className="g_fadeIn text-4xl md:text-6xl font-semibold leading-tight">
-            Sérénité & équilibre
+            Sérénité & Équilibre
           </h1>
           <p className="g_fadeIn mt-6 text-lg md:text-xl max-w-3xl">
             Séances de sophrologie personnalisées pour apaiser l’esprit et le

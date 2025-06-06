@@ -57,7 +57,7 @@ const Home = () => {
 
           <div className="bg-green-50 p-6 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 ease-out relative z-5">
             <div className="flex items-center mb-4">
-              <Leaf className="text-green-600 w-7 h-7 mr-3" />
+              <Leaf className="text-green-700 w-7 h-7 mr-3" />
               <h2 className="text-xl font-semibold text-green-700">
                 La Sophrologie, qu’est-ce que c’est ?
               </h2>
@@ -83,7 +83,7 @@ const Home = () => {
 
           <div className="bg-green-50 p-6 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 ease-out relative z-5">
             <div className="flex items-center mb-4">
-              <HandHeart className="text-green-600 w-7 h-7 mr-3" />
+              <HandHeart className="text-green-700 w-7 h-7 mr-3" />
               <h2 className="text-xl font-semibold text-green-700">
                 Notre approche personnalisée
               </h2>
@@ -98,13 +98,13 @@ const Home = () => {
 
       {/* CTA final vers À propos */}
       <div id="bloc-3" className="text-center pt-6">
-        <p className="text-xl font-semibold text-green-800 mb-4">
+        <p className="text-xl font-semibold text-green-700 mb-4">
           Envie d’en savoir plus sur notre démarche globale ?
         </p>
 
         <a
           href="/a-propos"
-          className="inline-block bg-green-700 text-white px-6 py-3 rounded-full hover:bg-green-600 transition-colors font-medium shadow"
+          className="inline-block bg-green-600 text-white px-6 py-3 rounded-full hover:bg-green-500 transition-colors font-medium shadow"
         >
           En savoir plus sur nous
         </a>

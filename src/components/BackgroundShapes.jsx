@@ -1,4 +1,3 @@
-// BackgroundShapes.jsx
 import React from "react";
 
 const BackgroundShapes = ({
@@ -9,7 +8,7 @@ const BackgroundShapes = ({
   opacity = "opacity-20",
   offset = "", // pour ajuster la position si besoin
 }) => {
-  // Définir les positions possibles (shapes qui dépassent du bloc)
+  // Positions possibles (formes qui dépassent du bloc)
   const positions = {
     "top-left": "absolute -top-16 -left-16",
     "top-right": "absolute -top-16 -right-16",
@@ -21,12 +20,31 @@ const BackgroundShapes = ({
     "center-right": "absolute top-1/2 -right-16 mt-[-4rem]",
   };
 
-  // Définir les formes possibles
+  // Définit les viewBox adaptés selon la forme
+  const viewBoxes = {
+    roundedTriangle: "0 0 53 53",
+    default: "0 0 100 100",
+  };
+
+  // Formes SVG
   const shapes = {
     circle: <circle cx="50" cy="50" r="50" />,
     square: <rect width="100" height="100" />,
     roundedSquare: <rect width="100" height="100" rx="20" />,
     triangle: <polygon points="50,5 95,95 5,95" />,
+    roundedTriangle: (
+      <path
+        d="M17.8397 8.7872
+           a10 10 0 0 1 17.3205 0
+           l14.6795 25.4256
+           a10 10 0 0 1 -8.6603 15
+           l-29.359 0
+           a10 10 0 0 1 -8.6603 -15
+           z"
+        strokeLinejoin="round"
+        strokeLinecap="round"
+      />
+    ),
     diamond: <polygon points="50,5 95,50 50,95 5,50" />,
   };
 
@@ -34,7 +52,7 @@ const BackgroundShapes = ({
     <svg
       className={`${positions[position]} ${size} ${opacity} ${color} pointer-events-none ${offset}`}
       fill="currentColor"
-      viewBox="0 0 100 100"
+      viewBox={viewBoxes[type] || viewBoxes.default}
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >

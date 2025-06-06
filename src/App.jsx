@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Home from "./components/Home";
+import ServicePreview from "./components/ServicePreview";
 
 const App = () => {
   return (
@@ -9,6 +10,7 @@ const App = () => {
       <Navbar />
       <Hero />
       <Home />
+      <ServicePreview />
     </main>
   );
 };
