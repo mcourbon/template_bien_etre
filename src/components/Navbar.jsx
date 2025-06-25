@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -8,14 +9,46 @@ const Navbar = () => {
       <nav className="px-6 py-4 flex items-center justify-between max-w-7xl mx-auto relative">
         {/* Logo */}
         <div className="text-xl font-bold text-green-500 cursor-pointer">
-          Energie Flow
+          <Link
+            to="/"
+            onClick={() => {
+              setMenuOpen(false);
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          >
+            Energie Flow
+          </Link>
         </div>
 
         {/* Desktop menu */}
         <ul className="hidden md:flex gap-6 text-gray-700 font-medium">
-          <li><a href="#about" className="hover:text-green-500 transition">À propos</a></li>
-          <li><a href="#services" className="hover:text-green-500 transition">Services</a></li>
-          <li><a href="#contact" className="hover:text-green-500 transition">Contact</a></li>
+          <li>
+            <Link
+              to="/a-propos"
+              className="hover:text-green-500 transition"
+              onClick={() => setMenuOpen(false)}
+            >
+              À propos
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/seances"
+              className="hover:text-green-500 transition"
+              onClick={() => setMenuOpen(false)}
+            >
+              Séances
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/contact"
+              className="hover:text-green-500 transition"
+              onClick={() => setMenuOpen(false)}
+            >
+              Contact
+            </Link>
+          </li>
         </ul>
 
         {/* Desktop button */}
@@ -50,9 +83,21 @@ const Navbar = () => {
       {menuOpen && (
         <div className="md:hidden absolute bg-white w-full left-0 top-full -mt-px shadow-md px-6 pb-4 z-10 ">
           <ul className="flex flex-col gap-4 text-gray-700 font-medium">
-            <li><a href="#about" onClick={() => setMenuOpen(false)}>À propos</a></li>
-            <li><a href="#services" onClick={() => setMenuOpen(false)}>Services</a></li>
-            <li><a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a></li>
+            <li>
+              <Link to="/a-propos" onClick={() => setMenuOpen(false)}>
+                À propos
+              </Link>
+            </li>
+            <li>
+              <Link to="/seances" onClick={() => setMenuOpen(false)}>
+                Séances
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact" onClick={() => setMenuOpen(false)}>
+                Contact
+              </Link>
+            </li>
           </ul>
           <button className="mt-4 w-full bg-green-500 rounded-full px-4 py-2 shadow text-white hover:bg-green-400 transition">
             Prendre rendez-vous

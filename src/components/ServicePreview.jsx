@@ -1,5 +1,5 @@
 import React from "react";
-import { useGSAP } from "@gsap/react";
+// import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import BackgroundShapes from "./BackgroundShapes";
@@ -53,7 +53,7 @@ const ServicePreview = () => {
   ];
 
   return (
-    <section className="max-w-6xl mx-auto px-6 py-16 relative">
+    <section className="max-w-6xl mx-auto px-6 py-16 relative md:mt-8">
       <BackgroundShapes
         type="roundedTriangle"
         position="top-right"

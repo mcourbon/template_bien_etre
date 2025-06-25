@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import BackgroundShapes from "./BackgroundShapes";
+import { Link } from "react-router-dom";
 gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
@@ -46,7 +47,7 @@ const Home = () => {
   }, []);
 
   return (
-    <section className="max-w-5xl mx-auto px-6 py-16 space-y-16 relative">
+    <section className="max-w-5xl mx-auto px-6 py-16 space-y-16 relative md:mt-8">
       {/* Blocs 1 et 2 côte à côte */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Bloc Sophrologie */}
@@ -102,12 +103,12 @@ const Home = () => {
           Envie d’en savoir plus sur notre démarche globale ?
         </p>
 
-        <a
-          href="/a-propos"
+        <Link
+          to="/a-propos"
           className="inline-block bg-green-600 text-white px-6 py-3 rounded-full hover:bg-green-500 transition-colors font-medium shadow"
         >
           En savoir plus sur nous
-        </a>
+        </Link>
       </div>
     </section>
   );
