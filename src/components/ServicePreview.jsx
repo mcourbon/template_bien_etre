@@ -53,14 +53,14 @@ const ServicePreview = () => {
   ];
 
   return (
-    <section className="max-w-6xl mx-auto px-6 py-16 relative md:mt-8">
+    <section className="max-w-6xl mx-auto px-6 py-16 relative md:mt-8 overflow-hidden md:overflow-visible">
       <BackgroundShapes
         type="roundedTriangle"
         position="top-right"
         size="w-48 h-48"
         color="text-green-300"
         opacity="opacity-20"
-        offset="-top-8 -right-16"
+        offset="-top-2 -right-16"
       />
       <BackgroundShapes
         type="roundedSquare"
@@ -68,7 +68,7 @@ const ServicePreview = () => {
         size="w-40 h-40"
         color="text-green-300"
         opacity="opacity-20"
-        offset="bottom-0 -left-16 rotate-45"
+        offset="bottom-8 -left-16 rotate-45"
       />
       
       <div

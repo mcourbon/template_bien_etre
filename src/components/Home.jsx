@@ -47,7 +47,7 @@ const Home = () => {
   }, []);
 
   return (
-    <section className="max-w-5xl mx-auto px-6 py-16 space-y-16 relative md:mt-8">
+    <section className="max-w-5xl mx-auto px-6 py-16 space-y-16 relative md:mt-8 overflow-hidden md:overflow-visible">
       {/* Blocs 1 et 2 côte à côte */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Bloc Sophrologie */}
