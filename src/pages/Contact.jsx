@@ -47,6 +47,18 @@ const Contact = () => {
       duration: 1,
       ease: "power2.out",
     });
+
+    gsap.from("#cta", {
+      scrollTrigger: {
+        trigger: "#cta",
+        start: "top 85%",
+        toggleActions: "play none none none",
+      },
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: "power2.out",
+    });
   }, []);
 
   return (
@@ -55,7 +67,10 @@ const Contact = () => {
       <div className="relative overflow-hidden bg-gradient-to-r from-green-100 to-green-50 py-20">
         <div className="absolute inset-0 bg-white/30"></div>
         <div className="relative max-w-4xl mx-auto px-4 md:px-6 text-center">
-          <div id="bulle" className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+          <div
+            id="bulle"
+            className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-6"
+          >
             <MessageCircle className="w-4 h-4" />
             Parlons de votre bien-être
           </div>
@@ -272,7 +287,7 @@ const Contact = () => {
 
         {/* FAQ or Additional Info */}
         <div className="mt-16 text-center">
-          <div className="bg-gradient-to-r from-green-600 to-green-500 text-white rounded-2xl p-8 max-w-3xl mx-auto shadow-xl">
+          <div id="cta" className="bg-gradient-to-r from-green-600 to-green-500 text-white rounded-2xl p-8 max-w-3xl mx-auto shadow-xl">
             <h3 className="text-2xl font-bold mb-4">
               Une première approche en douceur
             </h3>

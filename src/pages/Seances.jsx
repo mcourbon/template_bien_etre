@@ -18,6 +18,18 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Services = () => {
   useGSAP(() => {
+    gsap.from("#cta", {
+      scrollTrigger: {
+        trigger: "#cta",
+        start: "top 85%",
+        toggleActions: "play none none none",
+      },
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: "power2.out",
+    });
+
     gsap.from("#bulle", {
       scrollTrigger: {
         trigger: "#bulle",
@@ -27,6 +39,19 @@ const Services = () => {
       opacity: 0,
       y: -100,
       duration: 1,
+      ease: "power2.out",
+    });
+
+    gsap.from(".trust-item", {
+      scrollTrigger: {
+        trigger: ".trust-indicators",
+        start: "top 85%",
+        toggleActions: "play none none none",
+      },
+      opacity: 0,
+      y: 50,
+      duration: 0.8,
+      stagger: 0.2,
       ease: "power2.out",
     });
   }, []);
@@ -153,7 +178,10 @@ const Services = () => {
       <div className="relative overflow-hidden bg-gradient-to-r from-green-100 to-green-50 py-20">
         <div className="absolute inset-0 bg-white/30"></div>
         <div className="relative max-w-6xl mx-auto px-4 md:px-6 text-center">
-          <div id="bulle" className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+          <div
+            id="bulle"
+            className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-6"
+          >
             <Star className="w-4 h-4" />
             Découvrez mes accompagnements
           </div>
@@ -281,7 +309,10 @@ const Services = () => {
 
         {/* Bottom CTA Section */}
         <div className="mt-20 text-center">
-          <div className="bg-gradient-to-r from-green-600 to-green-500 text-white rounded-3xl p-12 max-w-4xl mx-auto shadow-2xl">
+          <div
+            id="cta"
+            className="bg-gradient-to-r from-green-600 to-green-500 text-white rounded-3xl p-12 max-w-4xl mx-auto shadow-2xl"
+          >
             <h3 className="text-3xl font-bold mb-6">
               Vous ne savez pas quelle séance choisir ?
             </h3>
@@ -303,8 +334,8 @@ const Services = () => {
         </div>
 
         {/* Trust Indicators */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          <div className="text-center p-6">
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto trust-indicators">
+          <div className="text-center p-6 trust-item">
             <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
               <CheckCircle className="w-8 h-8 text-green-600" />
             </div>
@@ -315,7 +346,7 @@ const Services = () => {
               Votre satisfaction est ma priorité
             </p>
           </div>
-          <div className="text-center p-6">
+          <div className="text-center p-6 trust-item">
             <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
               <Heart className="w-8 h-8 text-green-600" />
             </div>
@@ -326,7 +357,7 @@ const Services = () => {
               Respect de votre rythme et de vos besoins
             </p>
           </div>
-          <div className="text-center p-6">
+          <div className="text-center p-6 trust-item">
             <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
               <Clock className="w-8 h-8 text-green-600" />
             </div>
