@@ -9,6 +9,7 @@ import {
   Euro,
   CheckCircle,
   Star,
+  Phone,
 } from "lucide-react";
 
 const Services = () => {
@@ -119,9 +120,9 @@ const Services = () => {
       setTimeout(() => {
         const element = document.getElementById(hash.substring(1));
         if (element) {
-          element.scrollIntoView({ 
-            behavior: 'smooth',
-            block: 'start'
+          element.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
           });
         }
       }, 100);
@@ -272,12 +273,13 @@ const Services = () => {
               correspond le mieux.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-green-600 font-semibold px-8 py-3 rounded-full hover:bg-green-50 transition-colors shadow-lg">
+              <a
+                href="tel:+33638710076"
+                className="inline-flex items-center gap-3 bg-white text-green-600 font-semibold px-8 py-3 rounded-full hover:bg-green-50 transition-colors shadow-lg"
+              >
+                <Phone className="w-5 h-5" />
                 Échange gratuit de 15min
-              </button>
-              <button className="border-2 border-white text-white font-semibold px-8 py-3 rounded-full hover:bg-white hover:text-green-600 transition-all">
-                Voir tous les tarifs
-              </button>
+              </a>
             </div>
           </div>
         </div>
