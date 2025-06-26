@@ -8,6 +8,10 @@ import {
   Send,
   CheckCircle,
 } from "lucide-react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -31,13 +35,27 @@ const Contact = () => {
     });
   };
 
+  useGSAP(() => {
+    gsap.from("#bulle", {
+      scrollTrigger: {
+        trigger: "#bulle",
+        start: "top 85%",
+        toggleActions: "play none none none",
+      },
+      opacity: 0,
+      y: -100,
+      duration: 1,
+      ease: "power2.out",
+    });
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-50 text-green-700 pb-16">
       {/* Hero Section */}
       <div className="relative overflow-hidden bg-gradient-to-r from-green-100 to-green-50 py-20">
         <div className="absolute inset-0 bg-white/30"></div>
         <div className="relative max-w-4xl mx-auto px-4 md:px-6 text-center">
-          <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+          <div id="bulle" className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
             <MessageCircle className="w-4 h-4" />
             Parlons de votre bien-être
           </div>

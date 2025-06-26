@@ -112,7 +112,7 @@ const Home = () => {
 
         <Link
           to="/a-propos"
-          className="inline-block bg-green-600 text-white px-6 py-3 rounded-full hover:bg-green-500 transition-colors font-medium shadow"
+          className="inline-block bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white px-6 py-3 rounded-full transition-colors font-medium shadow"
         >
           En savoir plus sur nous
         </Link>

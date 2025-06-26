@@ -8,15 +8,45 @@ import {
   Award,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
+  useGSAP(() => {
+    gsap.from("#cta", {
+      scrollTrigger: {
+        trigger: "#cta",
+        start: "top 85%",
+        toggleActions: "play none none none",
+      },
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: "power2.out",
+    });
+
+    gsap.from("#bulle", {
+      scrollTrigger: {
+        trigger: "#bulle",
+        start: "top 85%",
+        toggleActions: "play none none none",
+      },
+      opacity: 0,
+      y: -100,
+      duration: 1,
+      ease: "power2.out",
+    });
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-50 text-green-700 pb-16">
       {/* Hero Section */}
       <div className="relative overflow-hidden bg-gradient-to-r from-green-100 to-green-50 py-20">
         <div className="absolute inset-0 bg-white/30"></div>
         <div className="relative max-w-4xl mx-auto px-4 md:px-6 text-center">
-          <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+          <div id="bulle" className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
             <Sparkles className="w-4 h-4" />
             Bienvenue dans votre espace de transformation
           </div>
@@ -165,7 +195,10 @@ const About = () => {
 
         {/* Call to Action */}
         <div className="text-center mt-16">
-          <div className="bg-gradient-to-r from-green-600 to-green-500 text-white rounded-2xl p-8 max-w-2xl mx-auto shadow-xl">
+          <div
+            id="cta"
+            className="bg-gradient-to-r from-green-600 to-green-500 text-white rounded-2xl p-8 max-w-2xl mx-auto shadow-xl"
+          >
             <h3 className="text-2xl font-bold mb-4">
               Prêt·e à commencer votre transformation ?
             </h3>

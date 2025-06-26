@@ -33,7 +33,7 @@ const CallToAction = () => {
       >
         {/* Section title */}
         <h2 className="text-3xl font-semibold text-green-700 mb-4">
-          Prêt(e) à rééquilibrer votre énergie ?
+          Prêt·e à rééquilibrer votre énergie ?
         </h2>
 
         {/* Description */}
@@ -45,7 +45,7 @@ const CallToAction = () => {
         {/* Contact button with arrow icon */}
         <Link
           to="/contact"
-          className="inline-flex items-center bg-green-600 hover:bg-green-500 text-white font-medium py-3 px-6 rounded-full transition"
+          className="inline-flex items-center bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white font-medium py-3 px-6 rounded-full transition"
         >
           Me contacter
           <ArrowRight className="ml-2" size={20} />

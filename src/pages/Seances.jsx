@@ -11,8 +11,26 @@ import {
   Star,
   Phone,
 } from "lucide-react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 const Services = () => {
+  useGSAP(() => {
+    gsap.from("#bulle", {
+      scrollTrigger: {
+        trigger: "#bulle",
+        start: "top 85%",
+        toggleActions: "play none none none",
+      },
+      opacity: 0,
+      y: -100,
+      duration: 1,
+      ease: "power2.out",
+    });
+  }, []);
+
   const services = [
     {
       id: "individuelles",
@@ -135,7 +153,7 @@ const Services = () => {
       <div className="relative overflow-hidden bg-gradient-to-r from-green-100 to-green-50 py-20">
         <div className="absolute inset-0 bg-white/30"></div>
         <div className="relative max-w-6xl mx-auto px-4 md:px-6 text-center">
-          <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+          <div id="bulle" className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
             <Star className="w-4 h-4" />
             Découvrez mes accompagnements
           </div>
