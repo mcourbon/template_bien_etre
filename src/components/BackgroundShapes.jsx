@@ -6,27 +6,27 @@ const BackgroundShapes = ({
   size = "w-32 h-32",
   color = "text-green-300",
   opacity = "opacity-20",
-  offset = "", // pour ajuster la position si besoin
+  offset = "", // to adjust the position if needed
 }) => {
-  // Positions possibles (formes qui dépassent du bloc)
+  // Possible positions (shapes sticking out of the container)
   const positions = {
     "top-left": "absolute -top-16 -left-16",
     "top-right": "absolute -top-16 -right-16",
     "bottom-left": "absolute -bottom-16 -left-16",
     "bottom-right": "absolute -bottom-16 -right-16",
-    "top-center": "absolute -top-16 left-1/2 ml-[-4rem]", // au lieu de translate-x
+    "top-center": "absolute -top-16 left-1/2 ml-[-4rem]", // instead of translate-x
     "bottom-center": "absolute -bottom-16 left-1/2 ml-[-4rem]",
     "center-left": "absolute top-1/2 -left-16 mt-[-4rem]",
     "center-right": "absolute top-1/2 -right-16 mt-[-4rem]",
   };
 
-  // Définit les viewBox adaptés selon la forme
+  // Define appropriate viewBoxes depending on the shape
   const viewBoxes = {
     roundedTriangle: "0 0 53 53",
     default: "0 0 100 100",
   };
 
-  // Formes SVG
+  // SVG shapes
   const shapes = {
     circle: <circle cx="50" cy="50" r="50" />,
     square: <rect width="100" height="100" />,

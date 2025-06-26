@@ -5,18 +5,21 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import BackgroundShapes from "./BackgroundShapes";
 import { Link } from "react-router-dom";
+
+// Register the ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
+  // Animate elements on scroll when component mounts
   useGSAP(() => {
     gsap.from("#bloc-1", {
       scrollTrigger: {
-        trigger: "#bloc-1",
-        start: "top 85%",
-        toggleActions: "play none none none",
+        trigger: "#bloc-1", // Target element
+        start: "top 85%", // When top of element hits 85% of viewport height
+        toggleActions: "play none none none", // Only play once
       },
-      opacity: 0,
-      y: 50,
+      opacity: 0, // Start fully transparent
+      y: 50, // Start 50px lower
       duration: 1,
       ease: "power2.out",
     });
@@ -47,15 +50,18 @@ const Home = () => {
   }, []);
 
   return (
+    // Main section with max width, padding and vertical spacing
     <section className="max-w-5xl mx-auto px-6 py-16 space-y-16 relative md:mt-8 overflow-hidden md:overflow-visible">
-      {/* Blocs 1 et 2 côte à côte */}
+      {/* Grid for the first two content blocks (responsive) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Bloc Sophrologie */}
+        {/* Block 1: What is sophrology? */}
         <div id="bloc-1" className="relative">
+          {/* Decorative background shapes (non-interactive) */}
           <div className="absolute inset-0 z-0 pointer-events-none">
             <BackgroundShapes />
           </div>
 
+          {/* Content box with icon and text */}
           <div className="bg-green-50 p-6 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 ease-out relative z-5">
             <div className="flex items-center mb-4">
               <Leaf className="text-green-700 w-7 h-7 mr-3" />
@@ -70,8 +76,9 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Bloc Approche */}
+        {/* Block 2: Personalized approach */}
         <div id="bloc-2" className="relative">
+          {/* Custom shaped decorative background */}
           <div className="absolute inset-0 z-0 pointer-events-none">
             <BackgroundShapes
               type="roundedSquare"
@@ -97,7 +104,7 @@ const Home = () => {
         </div>
       </div>
 
-      {/* CTA final vers À propos */}
+      {/* Block 3: Call to action (link to About page) */}
       <div id="bloc-3" className="text-center pt-6">
         <p className="text-xl font-semibold text-green-700 mb-4">
           Envie d’en savoir plus sur notre démarche globale ?

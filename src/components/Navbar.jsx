@@ -20,7 +20,7 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Desktop menu */}
+        {/* Desktop navigation links */}
         <ul className="hidden md:flex gap-6 text-gray-700 font-medium">
           <li>
             <Link
@@ -56,21 +56,24 @@ const Navbar = () => {
           Prendre rendez-vous
         </button>
 
-        {/* Custom Hamburger */}
+        {/* Hamburger menu button (mobile only) */}
         <div
           className="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1 cursor-pointer"
           onClick={() => setMenuOpen(!menuOpen)}
         >
+          {/* Top bar */}
           <span
             className={`h-0.5 w-6 bg-green-700 rounded transition-transform duration-300 ${
               menuOpen ? "rotate-45 translate-y-1.5" : ""
             }`}
           />
+          {/* Middle bar */}
           <span
             className={`h-0.5 w-6 bg-green-700 rounded transition-opacity duration-150 ${
               menuOpen ? "opacity-0" : "opacity-100"
             }`}
           />
+          {/* Bottom bar */}
           <span
             className={`h-0.5 w-6 bg-green-700 rounded transition-transform duration-300 ${
               menuOpen ? "-rotate-45 -translate-y-1.5" : ""
@@ -79,9 +82,9 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile menu */}
+      {/* Mobile navigation menu */}
       {menuOpen && (
-        <div className="md:hidden absolute bg-white w-full left-0 top-full -mt-px shadow-md px-6 pb-4 z-10 ">
+        <div className="md:hidden absolute bg-white w-full left-0 top-full -mt-px shadow-md px-6 pb-4 z-10">
           <ul className="flex flex-col gap-4 text-gray-700 font-medium">
             <li>
               <Link to="/a-propos" onClick={() => setMenuOpen(false)}>

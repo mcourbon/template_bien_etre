@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-green-50 text-green-700 py-5 mt-20">
+    <footer className="bg-green-50 text-green-700 py-5">
+      {/* Container with responsive grid layout */}
       <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {/* Logo ou nom */}
+        {/* Logo or brand name section */}
         <div>
           <h3 className="text-xl font-semibold mb-4">Équilibre & Sérénité</h3>
           <p className="text-green-600 text-sm">
@@ -15,7 +16,7 @@ const Footer = () => {
           </p>
         </div>
 
-        {/* Liens rapides */}
+        {/* Quick links section */}
         <div>
           <h4 className="text-lg font-semibold mb-4">Liens utiles</h4>
           <ul className="space-y-2 text-green-600 text-sm">
@@ -42,7 +43,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Pages légales */}
+        {/* Legal information links */}
         <div>
           <h4 className="text-lg font-semibold mb-4">Informations légales</h4>
           <ul className="space-y-2 text-green-600 text-sm">
@@ -62,10 +63,11 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Réseaux sociaux / contact */}
+        {/* Contact details and social media links */}
         <div>
           <h4 className="text-lg font-semibold mb-4">Contact</h4>
           <ul className="space-y-2 text-green-600 text-sm">
+            {/* Email contact */}
             <li className="flex items-center gap-2">
               <a
                 href="mailto:contact@energieflow.fr"
@@ -74,6 +76,8 @@ const Footer = () => {
                 contact@energieflow.fr
               </a>
             </li>
+
+            {/* Social media icons */}
             <li className="flex gap-4 mt-4">
               <a
                 href="#"
@@ -94,6 +98,7 @@ const Footer = () => {
         </div>
       </div>
 
+      {/* Copyright notice */}
       <div className="border-t border-green-100 mt-10 pt-6 text-center text-sm text-green-500">
         &copy; {new Date().getFullYear()} EnergieFlow - Tous droits réservés.
       </div>
