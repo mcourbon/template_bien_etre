@@ -52,9 +52,12 @@ const Navbar = () => {
         </ul>
 
         {/* Desktop button */}
-        <button className="hidden md:inline-block bg-green-500 rounded-full px-4 py-2 shadow text-white hover:bg-green-400 transition">
+        {/* <Link to="calendly" className="hidden md:inline-block bg-green-500 rounded-full px-4 py-2 shadow text-white hover:bg-green-400 transition">
           Prendre rendez-vous
-        </button>
+        </Link> */}
+        <Link to="/contact" className="hidden md:inline-block bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 rounded-full px-4 py-2 shadow text-white hover:bg-green-400 transition">
+          Prendre rendez-vous
+        </Link>
 
         {/* Hamburger menu button (mobile only) */}
         <div
@@ -102,9 +105,12 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
-          <button className="mt-4 w-full bg-green-500 rounded-full px-4 py-2 shadow text-white hover:bg-green-400 transition">
+          {/* <Link to="/calendly" className="mt-4 w-full bg-green-500 rounded-full px-4 py-2 shadow text-white hover:bg-green-400 transition">
             Prendre rendez-vous
-          </button>
+          </Link> */}
+          <Link to="/contact" className="mt-4 w-full bg-green-500 rounded-full px-4 py-2 shadow text-white hover:bg-green-400 transition">
+            Prendre rendez-vous
+          </Link>
         </div>
       )}
     </header>

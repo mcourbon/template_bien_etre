@@ -15,6 +15,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
+import { Link } from "react-router-dom";
 
 const Services = () => {
   useGSAP(() => {
@@ -119,7 +120,7 @@ const Services = () => {
         "Outils pratiques pour le quotidien",
         "Renforcement de la confiance en soi",
       ],
-      duration: "1h à 1h15",
+      duration: "1h à 1h30",
       price: "55€",
       location: "Cabinet, en ligne ou à domicile",
       techniques: [
@@ -299,9 +300,9 @@ const Services = () => {
                 </div>
 
                 {/* CTA Button */}
-                <button className="bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl">
+                <Link to="/contact" className="inline-block bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl">
                   Réserver cette séance
-                </button>
+                </Link>
               </div>
             </div>
           ))}

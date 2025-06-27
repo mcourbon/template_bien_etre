@@ -7,11 +7,9 @@ import {
   MessageCircle,
   Send,
   CheckCircle,
+  AlertCircle,
+  Loader2,
 } from "lucide-react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -20,12 +18,64 @@ const Contact = () => {
     message: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [validationError, setValidationError] = useState("");
 
-  const handleSubmit = (e) => {
+  // Formspree configuration, client just has to give his url
+  const FORMSPREE_URL = "https://formspree.io/f/xgvyroej";
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
-    setFormData({ nom: "", email: "", message: "" });
+    setValidationError("");
+    setError("");
+
+    // Field validation
+    const missingFields = [];
+    if (!formData.nom.trim()) missingFields.push("nom");
+    if (!formData.email.trim()) missingFields.push("email");
+    if (!formData.message.trim()) missingFields.push("message");
+
+    if (missingFields.length > 0) {
+      const fieldNames = {
+        nom: "nom complet",
+        email: "adresse email",
+        message: "message"
+      };
+      const missingFieldNames = missingFields.map(field => fieldNames[field]);
+      setValidationError(`Veuillez remplir ${missingFieldNames.length > 1 ? 'les champs' : 'le champ'} : ${missingFieldNames.join(', ')}`);
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const response = await fetch(FORMSPREE_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.nom,
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Erreur réseau');
+      }
+
+      setIsSubmitted(true);
+      setFormData({ nom: "", email: "", message: "" });
+      setTimeout(() => setIsSubmitted(false), 5000);
+      
+    } catch (err) {
+      console.error("Erreur envoi:", err);
+      setError("Erreur lors de l'envoi. Veuillez réessayer ou me contacter directement par téléphone.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -35,42 +85,13 @@ const Contact = () => {
     });
   };
 
-  useGSAP(() => {
-    gsap.from("#bulle", {
-      scrollTrigger: {
-        trigger: "#bulle",
-        start: "top 85%",
-        toggleActions: "play none none none",
-      },
-      opacity: 0,
-      y: -100,
-      duration: 1,
-      ease: "power2.out",
-    });
-
-    gsap.from("#cta", {
-      scrollTrigger: {
-        trigger: "#cta",
-        start: "top 85%",
-        toggleActions: "play none none none",
-      },
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      ease: "power2.out",
-    });
-  }, []);
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-50 text-green-700 pb-16">
       {/* Hero Section */}
       <div className="relative overflow-hidden bg-gradient-to-r from-green-100 to-green-50 py-20">
         <div className="absolute inset-0 bg-white/30"></div>
         <div className="relative max-w-4xl mx-auto px-4 md:px-6 text-center">
-          <div
-            id="bulle"
-            className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-6"
-          >
+          <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
             <MessageCircle className="w-4 h-4" />
             Parlons de votre bien-être
           </div>
@@ -184,9 +205,10 @@ const Contact = () => {
               Envoyez-moi un message
             </h2>
 
+            {/* Message's status */}
             {isSubmitted && (
               <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-2xl flex items-center gap-3">
-                <CheckCircle className="text-green-600 w-6 h-6" />
+                <CheckCircle className="text-green-600 w-6 h-6 flex-shrink-0" />
                 <div>
                   <p className="font-semibold text-green-800">
                     Message envoyé avec succès !
@@ -198,7 +220,27 @@ const Contact = () => {
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            {validationError && (
+              <div className="mb-6 p-4 bg-orange-50 border border-orange-200 rounded-2xl flex items-center gap-3">
+                <AlertCircle className="text-orange-600 w-6 h-6 flex-shrink-0" />
+                <div>
+                  <p className="font-semibold text-orange-800">Champs manquants</p>
+                  <p className="text-sm text-orange-600">{validationError}</p>
+                </div>
+              </div>
+            )}
+
+            {error && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-2xl flex items-center gap-3">
+                <AlertCircle className="text-red-600 w-6 h-6 flex-shrink-0" />
+                <div>
+                  <p className="font-semibold text-red-800">Erreur d'envoi</p>
+                  <p className="text-sm text-red-600">{error}</p>
+                </div>
+              </div>
+            )}
+
+            <div className="space-y-6">
               <div>
                 <label className="block text-sm font-semibold text-green-800 mb-2">
                   Nom complet *
@@ -208,7 +250,8 @@ const Contact = () => {
                   name="nom"
                   value={formData.nom}
                   onChange={handleChange}
-                  className="w-full border-2 border-green-200 p-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-300 focus:border-green-400 transition-all duration-200"
+                  disabled={isLoading}
+                  className="w-full border-2 border-green-200 p-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-300 focus:border-green-400 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                   placeholder="Votre nom"
                   required
                 />
@@ -223,7 +266,8 @@ const Contact = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full border-2 border-green-200 p-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-300 focus:border-green-400 transition-all duration-200"
+                  disabled={isLoading}
+                  className="w-full border-2 border-green-200 p-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-300 focus:border-green-400 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                   placeholder="votre@email.com"
                   required
                 />
@@ -237,21 +281,32 @@ const Contact = () => {
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  rows="6"
-                  className="w-full border-2 border-green-200 p-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-300 focus:border-green-400 transition-all duration-200 resize-none"
+                  disabled={isLoading}
+                  rows={6}
+                  className="w-full border-2 border-green-200 p-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-300 focus:border-green-400 transition-all duration-200 resize-none disabled:opacity-50 disabled:cursor-not-allowed"
                   placeholder="Parlez-moi de vos attentes, de ce qui vous amène vers moi, ou de toute question que vous pourriez avoir..."
                   required
-                ></textarea>
+                />
               </div>
 
               <button
-                type="submit"
-                className="w-full bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
+                onClick={handleSubmit}
+                disabled={isLoading}
+                className="w-full bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:from-green-600 disabled:hover:to-green-500"
               >
-                <Send className="w-5 h-5" />
-                Envoyer mon message
+                {isLoading ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    Envoi en cours...
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-5 h-5" />
+                    Envoyer mon message
+                  </>
+                )}
               </button>
-            </form>
+            </div>
 
             <p className="text-xs text-green-600 text-center mt-4">
               Vos données personnelles sont protégées et ne seront jamais
@@ -281,13 +336,13 @@ const Contact = () => {
               allowFullScreen=""
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
+            />
           </div>
         </div>
 
         {/* FAQ or Additional Info */}
         <div className="mt-16 text-center">
-          <div id="cta" className="bg-gradient-to-r from-green-600 to-green-500 text-white rounded-2xl p-8 max-w-3xl mx-auto shadow-xl">
+          <div className="bg-gradient-to-r from-green-600 to-green-500 text-white rounded-2xl p-8 max-w-3xl mx-auto shadow-xl">
             <h3 className="text-2xl font-bold mb-4">
               Une première approche en douceur
             </h3>

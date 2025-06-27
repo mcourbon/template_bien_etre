@@ -9,6 +9,7 @@ import Accueil from "./pages/Accueil";
 import APropos from "./pages/APropos";
 import Seances from "./pages/Seances";
 import Contact from "./pages/Contact";
+// import Calendly from "./pages/Calendly";
 import MentionsLegales from "./pages/MentionsLegales";
 import PolitiqueConfidentialite from "./pages/PolitiqueConfidentialite";
 
@@ -24,6 +25,7 @@ const App = () => {
             <Route path="/a-propos" element={<APropos />} />
             <Route path="/seances" element={<Seances />} />
             <Route path="/contact" element={<Contact />} />
+            {/* <Route path="/calendly" element={<Calendly />} /> */}
             <Route path="/mentions-legales" element={<MentionsLegales />} />
             <Route
               path="/politique-de-confidentialite"
